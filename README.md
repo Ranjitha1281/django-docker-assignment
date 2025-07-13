@@ -17,3 +17,4 @@ python manage.py runserver
 ```
 
 Visit [http://localhost:8000/items/](http://localhost:8000/items/) for output.
+Visit [ http://localhost:8000/admin/](http://localhost:8000/items/) for output.
