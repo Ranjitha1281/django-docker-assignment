@@ -1,13 +1,14 @@
-FROM python:3.11-slim
+FROM python:3.11
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+RUN apt-get update && apt-get install -y netcat-openbsd
 
 WORKDIR /code
 
-COPY requirements.txt /code/
-RUN pip install --upgrade pip && pip install -r requirements.txt
+COPY requirements.txt .
+RUN python -m pip install --no-cache-dir -r requirements.txt
 
-COPY . /code/
+COPY . .
 
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+EXPOSE 8000
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
